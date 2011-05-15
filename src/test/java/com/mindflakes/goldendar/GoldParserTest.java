@@ -3,6 +3,7 @@ package com.mindflakes.goldendar;
 import org.junit.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.number.OrderingComparison.greaterThan;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -27,6 +28,6 @@ public class GoldParserTest extends Base {
     @Test
     public void testFileIsRead() throws Exception{
         StringBuffer content = loadContent("fall2011.html");
-        assertThat(content.toString().length() > 10,is(true));
+        assertThat(content.toString().length(),is(greaterThan(10)));
     }
 }
