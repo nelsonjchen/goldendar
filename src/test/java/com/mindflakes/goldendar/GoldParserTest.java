@@ -30,4 +30,11 @@ public class GoldParserTest extends Base {
         StringBuffer content = loadContent("fall2011.html");
         assertThat(content.toString().length(),is(greaterThan(10)));
     }
+
+    @Test
+    public void testSchedule() throws Exception {
+        StringBuffer content = loadContent("fall2011.html");
+        GoldScraper scraper = new GoldScraper();
+        scraper.parseContent(content.toString());
+    }
 }
