@@ -1,5 +1,6 @@
 package com.mindflakes.goldendar;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.htmlcleaner.CleanerProperties;
 import org.htmlcleaner.HtmlCleaner;
 import org.htmlcleaner.TagNode;
@@ -37,7 +38,7 @@ public class GoldScraper {
                     " font-size:10px;" +
                     " float: left;", true, false);
             String title = title_elements[0].getText().toString();
-            course.setName(title);
+            course.setName(StringEscapeUtils.unescapeHtml(title));
             schedule.getCourses().add(course);
         }
 
