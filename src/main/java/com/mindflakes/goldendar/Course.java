@@ -1,5 +1,7 @@
 package com.mindflakes.goldendar;
 
+import java.util.ArrayList;
+
 /**
  * Created by IntelliJ IDEA.
  * User: nelson
@@ -11,6 +13,7 @@ public class Course {
     private String name;
     private String number;
     private String subjectArea;
+    private ArrayList<Session> sessions;
 
     public String getName() {
         return name;
@@ -36,7 +39,16 @@ public class Course {
         this.subjectArea = subjectArea;
     }
 
+    public ArrayList<Session> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(ArrayList<Session> sessions) {
+        this.sessions = sessions;
+    }
+
     public String toString(){
         return subjectArea + " " + number + " "+ "-" + " "+ name;
     }
+
 }
