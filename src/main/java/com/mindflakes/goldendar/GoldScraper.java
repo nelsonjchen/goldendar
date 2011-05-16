@@ -30,6 +30,7 @@ public class GoldScraper {
 
         TagNode response = cleaner.clean(content);
         TagNode[] schedule_table = response.getElementsByAttValue("id","ctl00_pageContent_CourseList",true,true);
+        @SuppressWarnings("unchecked")
         List<TagNode> tr_course = schedule_table[0].getElementsByName("tbody",false)[0].getChildren();
         for (int i = 1; i < tr_course.size(); i++){
             Course course = new Course();
