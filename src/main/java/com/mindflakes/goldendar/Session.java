@@ -1,5 +1,7 @@
 package com.mindflakes.goldendar;
 
+import org.joda.time.Interval;
+
 /**
  * Created by IntelliJ IDEA.
  * User: nelson
@@ -8,5 +10,37 @@ package com.mindflakes.goldendar;
  * To change this template use File | Settings | File Templates.
  */
 public class Session {
+    private boolean[] weekdays;
+    private Interval first;
 
+    public Session() {
+        weekdays = new boolean[7];
+        for (boolean b: weekdays){
+            b = false;
+        }
+    }
+
+    public void toggleDay(int i){
+        weekdays[i - 1] = !weekdays[i];
+    }
+
+    public void setDayOn(int i){
+        weekdays[i - 1] = true;
+    }
+
+    public void setDayOff(int i){
+        weekdays[i - 1] = false;
+    }
+
+    public boolean[] getWeekdays() {
+        return weekdays;
+    }
+
+    public Interval getFirst() {
+        return first;
+    }
+
+    public void setFirst(Interval first) {
+        this.first = first;
+    }
 }
