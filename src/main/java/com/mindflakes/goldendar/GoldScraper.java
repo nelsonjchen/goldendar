@@ -1,6 +1,7 @@
 package com.mindflakes.goldendar;
 
 import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang.StringUtils;
 import org.htmlcleaner.CleanerProperties;
 import org.htmlcleaner.HtmlCleaner;
 import org.htmlcleaner.TagNode;
@@ -32,17 +33,37 @@ public class GoldScraper {
         List<TagNode> tr_course = schedule_table[0].getElementsByName("tbody",false)[0].getChildren();
         for (int i = 1; i < tr_course.size(); i++){
             Course course = new Course();
+
+
             TagNode tr = tr_course.get(i);
             TagNode[] title_elements = tr.getElementsByAttValue("style","padding-left:3px;" +
                     " font-weight:bold;" +
                     " font-size:10px;" +
                     " float: left;", true, false);
-            String title = title_elements[0].getText().toString();
-            course.setName(StringEscapeUtils.unescapeHtml(title));
+            populateNamesAndNumberFromTitleElement(course,title_elements[0]);
+
             schedule.getCourses().add(course);
         }
 
 
         return schedule;
+    }
+
+    private Course populateNamesAndNumberFromTitleElement(Course course, TagNode title_element){
+        String title = title_element.getText().toString();
+        title = StringEscapeUtils.unescapeHtml(title);
+        title = title.trim().replaceAll(" +", " ");
+
+        String[] title_token = StringUtils.split(title, "-");
+        String[] course_num_token = StringUtils.split(title_token[0].trim()," ");
+        String subject_area = course_num_token[0];
+        String course_number = course_num_token[1];
+        String name = title_token[1].trim();
+
+        course.setName(name);
+        course.setNumber(course_number);
+        course.setSubjectArea(subject_area);
+
+        return course;
     }
 }
