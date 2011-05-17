@@ -5,6 +5,7 @@ import org.apache.commons.lang.StringUtils;
 import org.htmlcleaner.CleanerProperties;
 import org.htmlcleaner.HtmlCleaner;
 import org.htmlcleaner.TagNode;
+import org.joda.time.DateTimeConstants;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class GoldScraper {
         schedule = new Schedule();
 
         TagNode response = cleaner.clean(content);
-        TagNode[] schedule_table = response.getElementsByAttValue("id","ctl00_pageContent_CourseList",true,true);
+        TagNode[] schedule_table = response.getElementsByAttValue("id", "ctl00_pageContent_CourseList", true, true);
         @SuppressWarnings("unchecked")
         List<TagNode> tr_course = schedule_table[0].getElementsByName("tbody",false)[0].getChildren();
         for (int i = 1; i < tr_course.size(); i++){
@@ -72,7 +73,6 @@ public class GoldScraper {
 
             String raw_weekday_text = week_days_td.getText().toString();
             raw_weekday_text = raw_weekday_text.replaceAll("&nbsp;"," ");
-            raw_weekday_text = StringUtils.deleteWhitespace(raw_weekday_text);
             raw_weekday_text = StringEscapeUtils.unescapeHtml(raw_weekday_text);
 
             String[] week_days = StringUtils.split(raw_weekday_text);
@@ -80,7 +80,11 @@ public class GoldScraper {
             for (String day : week_days){
                 char day_char = day.charAt(0);
                 switch (day_char){
-                    case 'M': break;
+                    case 'M': session.setDayOn(DateTimeConstants.MONDAY); break;
+                    case 'T': session.setDayOn(DateTimeConstants.TUESDAY); break;
+                    case 'W': session.setDayOn(DateTimeConstants.WEDNESDAY); break;
+                    case 'R': session.setDayOn(DateTimeConstants.THURSDAY); break;
+                    case 'F': session.setDayOn(DateTimeConstants.FRIDAY); break;
                 }
             }
 
