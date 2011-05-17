@@ -67,7 +67,7 @@ public class GoldScraper {
             TagNode tbody_nested = (TagNode) table.getChildren().get(0);
             TagNode tr_nested = (TagNode) tbody_nested.getChildren().get(1);
             TagNode week_days_td = (TagNode) tr_nested.getChildren().get(0);
-            TagNode times_td = (TagNode) tr_nested.getChildren().get(0);
+            TagNode times_td = (TagNode) tr_nested.getChildren().get(1);
 
             String raw_weekday_text = week_days_td.getText().toString();
             raw_weekday_text = raw_weekday_text.replaceAll("&nbsp;"," ");
@@ -85,6 +85,28 @@ public class GoldScraper {
                     case 'F': session.setDayOn(DateTimeConstants.FRIDAY); break;
                 }
             }
+
+            String raw_time_text = times_td.getText().toString();
+            raw_time_text = raw_time_text.replaceAll("&nbsp;"," ");
+            raw_time_text = StringEscapeUtils.unescapeHtml(raw_time_text);
+            String[] time_text_token = StringUtils.split(raw_time_text," :-");
+
+
+            int h = new Integer(time_text_token[0]);
+            int m = new Integer(time_text_token[1]);
+            boolean pm = false;
+            if (time_text_token[2].equals("PM")){
+                pm = true;
+            }
+            session.setBegin(h,m,pm);
+
+            h = new Integer(time_text_token[3]);
+            m = new Integer(time_text_token[4]);
+            pm = false;
+            if (time_text_token[5].equals("PM")){
+                pm = true;
+            }
+            session.setEnd(h,m,pm);
 
             course.getSessions().add(session);
 
