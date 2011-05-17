@@ -11,9 +11,10 @@ import org.joda.time.*;
  */
 public class Session {
     private boolean[] weekdays;
-    private Interval first;
     private LocalTime begin;
     private LocalTime end;
+    private String building;
+    private String room;
 
 
     public Session() {
@@ -37,10 +38,6 @@ public class Session {
 
     public boolean[] getWeekdays() {
         return weekdays;
-    }
-
-    public Interval getFirst() {
-        return first;
     }
 
     public void setBegin(int h, int m, boolean pm){
