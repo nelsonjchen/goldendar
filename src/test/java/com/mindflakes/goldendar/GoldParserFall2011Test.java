@@ -51,6 +51,30 @@ public class GoldParserFall2011Test extends Base {
         assertThat(name,is("AUT & FORML LANG"));
     }
 
+    @Test
+    public void testSecondClassIsCS176A() throws Exception {
+        Schedule schedule = getSchedule();
+        Course course = schedule.getCourses().get(1);
+        String subject_area = course.getSubjectArea();
+        String number = course.getNumber();
+        String name = course.getName();
+        assertThat(subject_area,is("CMPSC"));
+        assertThat(number,is("176A"));
+        assertThat(name,is("COMP COMM NETWORKS"));
+    }
+
+    @Test
+    public void testSecondClassIsMATH5C() throws Exception {
+        Schedule schedule = getSchedule();
+        Course course = schedule.getCourses().get(2);
+        String subject_area = course.getSubjectArea();
+        String number = course.getNumber();
+        String name = course.getName();
+        assertThat(subject_area,is("MATH"));
+        assertThat(number,is("5C"));
+        assertThat(name,is("VECTOR CALCULUS 2"));
+    }
+
     private Schedule getSchedule() throws Exception{
         StringBuffer content = loadContent("fall2011.html");
         GoldScraper scraper = new GoldScraper();
