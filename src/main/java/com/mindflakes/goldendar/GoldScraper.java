@@ -41,8 +41,13 @@ public class GoldScraper {
                     " font-weight:bold;" +
                     " font-size:10px;" +
                     " float: left;", true, false);
-            populateNamesAndNumberFromTitleElement(course,title_elements[0]);
 
+            TagNode[] meeting_times_list = tr.getElementsByAttValue("id",
+                    "ctl00_pageContent_CourseList_ctl01_MeetingTimesList", true, false);
+            populateNamesAndNumberFromTitleElement(course,title_elements[0]);
+            populateTimesSessionsFromElement(course,meeting_times_list[0]);
+
+            populateTimesSessionsFromElement(course,null);
             schedule.getCourses().add(course);
         }
 
@@ -50,7 +55,47 @@ public class GoldScraper {
         return schedule;
     }
 
-    private Course populateNamesAndNumberFromTitleElement(Course course, TagNode title_element){
+    private void populateTimesSessionsFromElement(Course course, TagNode element) {
+        @SuppressWarnings("unchecked")
+        List<TagNode> tbody = element.getChildren();
+        @SuppressWarnings("unchecked")
+        List<TagNode> tr_per_session_kind = tbody.get(0).getChildren();
+        for (TagNode tr : tr_per_session_kind){
+            Session session = new Session();
+
+            TagNode td = (TagNode) tr.getChildren().get(0);
+            TagNode table = (TagNode) td.getElementListByName("table",true).get(0);
+            TagNode tbody_nested = (TagNode) table.getChildren().get(0);
+            TagNode tr_nested = (TagNode) tbody_nested.getChildren().get(1);
+            TagNode week_days_td = (TagNode) tr_nested.getChildren().get(0);
+            TagNode times_td = (TagNode) tr_nested.getChildren().get(0);
+
+            String raw_weekday_text = week_days_td.getText().toString();
+            raw_weekday_text = raw_weekday_text.replaceAll("&nbsp;"," ");
+            raw_weekday_text = StringUtils.deleteWhitespace(raw_weekday_text);
+            raw_weekday_text = StringEscapeUtils.unescapeHtml(raw_weekday_text);
+
+            String[] week_days = StringUtils.split(raw_weekday_text);
+
+            for (String day : week_days){
+                char day_char = day.charAt(0);
+                switch (day_char){
+                    case 'M': break;
+                }
+            }
+
+            int i = 0;
+
+
+        }
+
+
+
+
+
+    }
+
+    private void populateNamesAndNumberFromTitleElement(Course course, TagNode title_element){
         String title = title_element.getText().toString();
         title = StringEscapeUtils.unescapeHtml(title);
         title = title.trim().replaceAll(" +", " ");
@@ -65,6 +110,6 @@ public class GoldScraper {
         course.setNumber(course_number);
         course.setSubjectArea(subject_area);
 
-        return course;
+        return;
     }
 }

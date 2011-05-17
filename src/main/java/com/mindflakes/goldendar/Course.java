@@ -15,6 +15,10 @@ public class Course {
     private String subjectArea;
     private ArrayList<Session> sessions;
 
+    public Course(){
+        sessions = new ArrayList<Session>();
+    }
+
     public String getName() {
         return name;
     }
@@ -41,10 +45,6 @@ public class Course {
 
     public ArrayList<Session> getSessions() {
         return sessions;
-    }
-
-    public void setSessions(ArrayList<Session> sessions) {
-        this.sessions = sessions;
     }
 
     public String toString(){

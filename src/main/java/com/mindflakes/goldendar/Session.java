@@ -1,6 +1,6 @@
 package com.mindflakes.goldendar;
 
-import org.joda.time.Interval;
+import org.joda.time.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -12,6 +12,9 @@ import org.joda.time.Interval;
 public class Session {
     private boolean[] weekdays;
     private Interval first;
+    private LocalTime begin;
+    private LocalTime end;
+
 
     public Session() {
         weekdays = new boolean[7];
@@ -40,7 +43,17 @@ public class Session {
         return first;
     }
 
-    public void setFirst(Interval first) {
-        this.first = first;
+    public void setBegin(int h, int m, boolean pm){
+        begin = new LocalTime(h,m);
+        if (pm){
+            begin = begin.plus(Hours.hours(12));
+        }
+    }
+
+    public void setEnd(int h, int m, boolean pm){
+        end = new LocalTime(h,m);
+        if (pm){
+            end = end.plus(Hours.hours(12));
+        }
     }
 }
