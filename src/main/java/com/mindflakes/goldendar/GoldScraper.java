@@ -44,11 +44,9 @@ public class GoldScraper {
                     " float: left;", true, false);
 
             TagNode[] meeting_times_list = tr.getElementsByAttValue("id",
-                    "ctl00_pageContent_CourseList_ctl01_MeetingTimesList", true, false);
+                    "ctl00_pageContent_CourseList_ctl0"+ i + "_MeetingTimesList", true, false);
             populateNamesAndNumberFromTitleElement(course,title_elements[0]);
             populateTimesSessionsFromElement(course,meeting_times_list[0]);
-
-            populateTimesSessionsFromElement(course,null);
             schedule.getCourses().add(course);
         }
 
@@ -87,6 +85,8 @@ public class GoldScraper {
                     case 'F': session.setDayOn(DateTimeConstants.FRIDAY); break;
                 }
             }
+
+            course.getSessions().add(session);
 
             int i = 0;
 

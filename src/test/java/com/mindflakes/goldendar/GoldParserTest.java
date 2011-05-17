@@ -37,4 +37,5 @@ public class GoldParserTest extends Base {
         GoldScraper scraper = new GoldScraper();
         scraper.parseContent(content.toString());
     }
+
 }
