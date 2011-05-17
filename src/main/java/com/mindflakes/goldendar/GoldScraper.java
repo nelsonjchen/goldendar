@@ -103,6 +103,7 @@ public class GoldScraper {
         String title = title_element.getText().toString();
         title = StringEscapeUtils.unescapeHtml(title);
         title = title.trim().replaceAll(" +", " ");
+        title = title.trim();
 
         String[] title_token = StringUtils.split(title, "-");
         String[] course_num_token = StringUtils.split(title_token[0].trim()," ");
