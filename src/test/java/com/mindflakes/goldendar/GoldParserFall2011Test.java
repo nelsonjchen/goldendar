@@ -39,4 +39,20 @@ public class GoldParserFall2011Test extends Base {
         scraper.parseContent(content.toString());
     }
 
+    @Test
+    public void testFirstClassIsCS178() throws Exception {
+        StringBuffer content = loadContent("fall2011.html");
+        GoldScraper scraper = new GoldScraper();
+        Schedule schedule = scraper.parseContent(content.toString());
+        Course course = schedule.getCourses().get(0);
+        String subject_area = course.getSubjectArea();
+        String number = course.getNumber();
+        String name = course.getName();
+        assertThat(subject_area,is("CMPSC"));
+        assertThat(number,is("138"));
+        assertThat(name,is("AUT & FORML LANG"));
+
+
+    }
+
 }
