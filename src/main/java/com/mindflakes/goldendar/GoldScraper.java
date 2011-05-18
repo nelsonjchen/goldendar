@@ -108,6 +108,15 @@ public class GoldScraper {
             }
             session.setEnd(h,m,pm);
 
+            TagNode location_td = (TagNode) tr_nested.getChildren().get(2);
+            @SuppressWarnings("unchecked")
+            List<TagNode> location_a = location_td.getElementListByAttValue("class","BuildingLocationLink",true,false);
+            String location_raw_text = location_a.get(0).getText().toString();
+            String[] location_token = StringUtils.split(location_raw_text);
+            session.setBuilding(location_token[0]);
+            session.setRoom(location_token[1]);
+
+
             course.getSessions().add(session);
 
             int i = 0;
