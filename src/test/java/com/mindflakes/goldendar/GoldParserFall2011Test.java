@@ -40,6 +40,14 @@ public class GoldParserFall2011Test extends Base {
     }
 
     @Test
+    public void testScheduleIsFall2011() throws Exception {
+        Schedule schedule = getSchedule();
+        String name = schedule.getName();
+        assertThat(name,is("Fall 2011"));
+    }
+
+
+    @Test
     public void testFirstClassIsCS178() throws Exception {
         Schedule schedule = getSchedule();
         Course course = schedule.getCourses().get(0);

@@ -30,6 +30,11 @@ public class GoldScraper {
         schedule = new Schedule();
 
         TagNode response = cleaner.clean(content);
+
+        TagNode[] quarter_option_selected = response.getElementsByAttValue("selected","selected",true,false);
+        String raw_quarter = quarter_option_selected[0].getText().toString();
+        schedule.setName(raw_quarter);
+
         TagNode[] schedule_table = response.getElementsByAttValue("id", "ctl00_pageContent_CourseList", true, true);
         @SuppressWarnings("unchecked")
         List<TagNode> tr_course = schedule_table[0].getElementsByName("tbody",false)[0].getChildren();
