@@ -36,7 +36,6 @@ public class GoldScraper {
         for (int i = 1; i < tr_course.size(); i++){
             Course course = new Course();
 
-
             TagNode tr = tr_course.get(i);
             TagNode[] title_elements = tr.getElementsByAttValue("style","padding-left:3px;" +
                     " font-weight:bold;" +
@@ -49,7 +48,6 @@ public class GoldScraper {
             populateTimesSessionsFromElement(course,meeting_times_list[0]);
             schedule.getCourses().add(course);
         }
-
 
         return schedule;
     }
@@ -116,18 +114,8 @@ public class GoldScraper {
             session.setBuilding(location_token[0]);
             session.setRoom(location_token[1]);
 
-
             course.getSessions().add(session);
-
-            int i = 0;
-
-
         }
-
-
-
-
-
     }
 
     private void populateNamesAndNumberFromTitleElement(Course course, TagNode title_element){
