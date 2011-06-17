@@ -9,13 +9,6 @@ import org.joda.time.DateTimeConstants;
 
 import java.util.List;
 
-/**
- * Created by IntelliJ IDEA.
- * User: nelson
- * Date: 5/15/11
- * Time: 2:28 AM
- * To change this template use File | Settings | File Templates.
- */
 public class GoldScraper {
     Schedule schedule;
 
