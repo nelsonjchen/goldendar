@@ -79,6 +79,8 @@ public class GoldScraper {
                     case 'W': session.setDayOn(DateTimeConstants.WEDNESDAY); break;
                     case 'R': session.setDayOn(DateTimeConstants.THURSDAY); break;
                     case 'F': session.setDayOn(DateTimeConstants.FRIDAY); break;
+                    case 'S': session.setDayOn(DateTimeConstants.SATURDAY); break;
+                    case 'U': session.setDayOn(DateTimeConstants.SUNDAY); break;
                 }
             }
 
