@@ -130,7 +130,5 @@ public class GoldScraper {
         course.setName(name);
         course.setNumber(course_number);
         course.setSubjectArea(subject_area);
-
-        return;
     }
 }
