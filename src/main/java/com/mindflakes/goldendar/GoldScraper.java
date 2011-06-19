@@ -100,10 +100,7 @@ public class GoldScraper {
 
             h = new Integer(time_text_token[3]);
             m = new Integer(time_text_token[4]);
-            pm = false;
-            if (time_text_token[5].equals("PM")){
-                pm = true;
-            }
+            pm = time_text_token[5].equals("PM");
             session.setEnd(h,m,pm);
 
             TagNode location_td = (TagNode) tr_nested.getChildren().get(2);
