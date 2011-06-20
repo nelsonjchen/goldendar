@@ -10,7 +10,7 @@ import org.joda.time.DateTimeConstants;
 import java.util.List;
 
 public class GoldScraper {
-    Schedule schedule;
+    private Schedule schedule;
 
     public Schedule parseContent(String content) throws Exception{
         HtmlCleaner cleaner = new HtmlCleaner();
