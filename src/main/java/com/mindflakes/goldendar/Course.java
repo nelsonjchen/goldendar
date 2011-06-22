@@ -2,13 +2,7 @@ package com.mindflakes.goldendar;
 
 import java.util.ArrayList;
 
-/**
- * Created by IntelliJ IDEA.
- * User: nelson
- * Date: 5/15/11
- * Time: 2:25 AM
- * To change this template use File | Settings | File Templates.
- */
+
 public class Course {
     private String name;
     private String number;
