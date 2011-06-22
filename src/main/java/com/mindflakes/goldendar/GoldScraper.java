@@ -10,7 +10,6 @@ import org.joda.time.DateTimeConstants;
 import java.util.List;
 
 public class GoldScraper {
-    private Schedule schedule;
 
     public Schedule parseContent(String content) throws Exception{
         HtmlCleaner cleaner = new HtmlCleaner();
@@ -20,7 +19,7 @@ public class GoldScraper {
         properties.setRecognizeUnicodeChars(true);
         properties.setTransResCharsToNCR(true);
 
-        schedule = new Schedule();
+        Schedule schedule = new Schedule();
 
         TagNode response = cleaner.clean(content);
 
@@ -50,6 +49,7 @@ public class GoldScraper {
         return schedule;
     }
 
+    @SuppressWarnings({"ConstantConditions"})
     private void populateTimesSessionsFromElement(Course course, TagNode element) {
         @SuppressWarnings("unchecked")
         List<TagNode> tbody = element.getChildren();
