@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<calendar>
+    <quarters>
+        <quarter>
+            <name>Fall 2011</name>
+            <dates>
+                <date>
+                    <begin>1316674800</begin>
+                    <end>1322812800</end>
+                </date>
+            </dates>
+            <holidays>
+                <holiday>
+                    <name>Veteran's Day</name>
+                    <dates>
+                        <date>1320998400</date>
+                    </dates>
+                </holiday>
+                <holiday>
+                    <name>Thanksgiving</name>
+                    <dates>
+                        <date>1322121600</date>
+                        <date>1322208000</date>
+                    </dates>
+                </holiday>
+            </holidays>
+        </quarter>
+    </quarters>
+</calendar>
